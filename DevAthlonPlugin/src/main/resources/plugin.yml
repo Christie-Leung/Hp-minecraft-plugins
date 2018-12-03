@@ -1,0 +1,5 @@
+name: DevAthlonPlugin
+version: ${project.version}
+main: me.keyla.plugin.devathlonplugin.DevAthlonPlugin
+authors: [Christie]
+commands:
