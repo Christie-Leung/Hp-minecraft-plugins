@@ -105,11 +105,15 @@ public class eventListener implements Listener {
 
     @EventHandler
         public void onChatSave(AsyncPlayerChatEvent event) {
+
         Player p = event.getPlayer();
         String msg = event.getMessage();
 
-        plugin.getConfig().set(p.getName() + " ",msg);
-        plugin.saveConfig();
+        if (!msg.isEmpty()) {
+            plugin.getConfig().set(p.getName() + " ", msg);
+            plugin.saveConfig();
+            event.setFormat("[" + p.getName() + "] " + msg);
+        }
     }
 
-    }
+}
