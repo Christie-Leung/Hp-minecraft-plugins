@@ -21,10 +21,12 @@ import static me.keyla.plugin.devathlonplugin.magicalItems.customItems.memoryBot
 public class memories implements Listener {
     Plugin plugin = DevAthlonPlugin.getPlugin(DevAthlonPlugin.class);
     private int amount = 1;
+    private ItemStack item = new ItemStack(Material.LAVA_BUCKET,1);
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent e) {
         Block clickedBlock = e.getClickedBlock();
+
         if (clickedBlock != null) {
             if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
                 if (e.getHand().equals(EquipmentSlot.HAND)) {
@@ -39,12 +41,13 @@ public class memories implements Listener {
                         if (materialInHand == null || materialInHand == Material.BUCKET) {
                             p.sendMessage("Not Working");
 
-                        } else if (p.getInventory().getItemInMainHand().isSimilar(memoryBottle)) {
+                        } else if (p.getInventory().getItemInMainHand().isSimilar(memoryBottle) && p.getInventory().getItemInMainHand().isSimilar(item)) {
                             p.sendMessage("Working, you got memory");
                             p.getInventory().remove(memoryBottle);
+                            p.getInventory().remove(item);
 
-                        } else if (!p.getInventory().getItem(amount).isSimilar(memoryBottle)) {
-                            p.sendMessage(ChatColor.RED + "You don't have the memory bottle");
+                        } else if (!p.getInventory().getItem(amount).isSimilar(memoryBottle) && p.getInventory().getItemInMainHand().isSimilar(item)) {
+                            p.sendMessage(ChatColor.RED + "You don't have the memory bottle or pensieve");
                         }
                     }
                 }

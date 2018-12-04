@@ -6,7 +6,6 @@ import org.bukkit.inventory.ItemStack;
 
 public class customItems {
 
-    public static ItemStack actualPensieve = new ItemStack(Material.CAULDRON);
     public static ItemStack memoryBottle = new ItemStack(Material.POTION);
     public static ItemStack weasleyClock = new ItemStack(Material.WATCH);
 }

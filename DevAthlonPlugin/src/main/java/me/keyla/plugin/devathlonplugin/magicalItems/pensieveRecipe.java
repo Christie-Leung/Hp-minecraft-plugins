@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class pensieveRecipe {
 
     private Plugin plugin = DevAthlonPlugin.getPlugin(DevAthlonPlugin.class);
-    private ItemStack item = new ItemStack(Material.LAVA_BUCKET,1);
+    private ItemStack item = new ItemStack(Material.WATER_BUCKET,1);
     public void Pensieve() {
 
         ItemMeta pensieves = item.getItemMeta();
