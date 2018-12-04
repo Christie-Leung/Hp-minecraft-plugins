@@ -30,7 +30,6 @@ public class memories implements Listener {
                 if (e.getHand().equals(EquipmentSlot.HAND)) {
                     Player p = e.getPlayer();
                     Material type = clickedBlock.getType();
-                    p.sendMessage("Right Click detected");
                     // Interacting with a Cauldron
                     if (type == Material.CAULDRON) {
                         Material materialInHand = e.getMaterial();
@@ -40,14 +39,14 @@ public class memories implements Listener {
                         if (materialInHand == null || materialInHand == Material.BUCKET) {
                             p.sendMessage("Not Working");
 
-                        } else if (p.getInventory().getItem(amount).isSimilar(memoryBottle)) {
+                        } else if (p.getInventory().getItemInMainHand().isSimilar(memoryBottle)) {
                             p.sendMessage("Working, you got memory");
                             p.getInventory().remove(memoryBottle);
-                            }
-                            return;
+
                         } else if (!p.getInventory().getItem(amount).isSimilar(memoryBottle)) {
                             p.sendMessage(ChatColor.RED + "You don't have the memory bottle");
                         }
+                    }
                 }
             }
         }
@@ -61,6 +60,7 @@ public class memories implements Listener {
 
     @EventHandler
     public void playerMemories() {
+
 
     }
 

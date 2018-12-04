@@ -21,7 +21,7 @@ import static me.keyla.plugin.devathlonplugin.magicalItems.customItems.weasleyCl
 public class magicItems implements CommandExecutor {
 
     private Plugin plugin = DevAthlonPlugin.getPlugin(DevAthlonPlugin.class);
-    private ItemStack item = new ItemStack(Material.WATER_BUCKET, 1);
+    private ItemStack item = new ItemStack(Material.LAVA_BUCKET, 1);
     private int amount = 1;
 
     @Override
@@ -46,7 +46,7 @@ public class magicItems implements CommandExecutor {
                 pensieveR.setIngredient('$', Material.COBBLESTONE);
                 pensieveR.setIngredient('%', Material.FEATHER);
                 plugin.getServer().addRecipe(pensieveR);
-                if (p.getInventory().getItem(amount).isSimilar(item)) {
+                if (p.getInventory().getItemInMainHand().equals(item)) {
                     // code if they do have the required items
                     p.getInventory().remove(item);
                     p.getInventory().addItem(actualPensieve);
@@ -69,6 +69,13 @@ public class magicItems implements CommandExecutor {
         wC.setDisplayName(ChatColor.ITALIC + "" + ChatColor.YELLOW + "Weasley Clock");
         wC.setLore(Arrays.asList(ChatColor.WHITE + "Right click this to find out a player's location!"));
         weasleyClock.setItemMeta(wC);
+    }
+
+    ItemMeta aP = customItems.actualPensieve.getItemMeta();
+    {
+        aP.setDisplayName(ChatColor.ITALIC + "" + ChatColor.AQUA + "Pensieve");
+        aP.setLore(Arrays.asList(ChatColor.DARK_BLUE + "Right click a" + ChatColor.LIGHT_PURPLE + " Bottle of Memories " + ChatColor.DARK_BLUE + "against this."));
+        actualPensieve.setItemMeta(aP);
     }
 }
 

@@ -3,10 +3,10 @@ package me.keyla.plugin.devathlonplugin;
 import me.keyla.plugin.devathlonplugin.Events.eventListener;
 import me.keyla.plugin.devathlonplugin.magicalItems.WeasleyClock;
 import me.keyla.plugin.devathlonplugin.magicalItems.memories;
+import me.keyla.plugin.devathlonplugin.magicalItems.pensieveRecipe;
 import org.bukkit.ChatColor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
-import me.keyla.plugin.devathlonplugin.magicalItems.pensieveRecipe;
 
 public final class DevAthlonPlugin extends JavaPlugin implements Listener {
 
@@ -34,6 +34,5 @@ public final class DevAthlonPlugin extends JavaPlugin implements Listener {
         getConfig().options().copyDefaults(true);
         saveConfig();
     }
-
 
 }

@@ -13,20 +13,9 @@ import java.util.ArrayList;
 public class pensieveRecipe {
 
     private Plugin plugin = DevAthlonPlugin.getPlugin(DevAthlonPlugin.class);
-    private ItemStack item = new ItemStack(Material.WATER_BUCKET,1);
+    private ItemStack item = new ItemStack(Material.LAVA_BUCKET,1);
     public void Pensieve() {
-        //Pensieve Recipe
-        /*ItemMeta pensieves = item.getItemMeta();
-        pensieves.setDisplayName(ChatColor.AQUA + "Pensieve");
-        ArrayList<String> lore = new ArrayList<String>();
-        lore.add(ChatColor.WHITE + "Used by Zeus in the great god battle");
-        pensieves.setLore(lore);
-        item.setItemMeta(pensieves);
-        ShapedRecipe pensieveR = new ShapedRecipe(item);
-        pensieveR.shape("   ", "*$*", "   ");
-        pensieveR.setIngredient('*', Material.COBBLESTONE);
-        pensieveR.setIngredient('$', Material.EMERALD);
-*/
+
         ItemMeta pensieves = item.getItemMeta();
         pensieves.setDisplayName(ChatColor.AQUA + "Pensieve");
         ArrayList<String> lore = new ArrayList<String>();
