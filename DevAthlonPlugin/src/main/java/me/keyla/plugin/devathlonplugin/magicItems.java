@@ -2,24 +2,17 @@ package me.keyla.plugin.devathlonplugin;
 
 import me.keyla.plugin.devathlonplugin.magicalItems.customItems;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.Plugin;
 
 import java.util.Arrays;
 
 import static me.keyla.plugin.devathlonplugin.magicalItems.customItems.weasleyClock;
 
 public class magicItems implements CommandExecutor {
-
-    private Plugin plugin = DevAthlonPlugin.getPlugin(DevAthlonPlugin.class);
-    private ItemStack item = new ItemStack(Material.WATER_BUCKET, 1);
-    private int amount = 1;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

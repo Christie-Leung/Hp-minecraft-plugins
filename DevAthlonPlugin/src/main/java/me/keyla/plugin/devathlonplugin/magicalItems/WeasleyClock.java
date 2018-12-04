@@ -39,17 +39,22 @@ public class WeasleyClock implements Listener {
         Player p = e.getPlayer();
 
         if (active = true) {
-        String msg = e.getMessage();
-            p.sendMessage(ChatColor.GOLD + "Online Players:");
-        for (Player p2 : plugin.getServer().getOnlinePlayers()) {
-            p.sendMessage(ChatColor.GOLD + p2.getName());
-            if (msg.equalsIgnoreCase(p2.getName())) {
-                Location p_loc = p2.getLocation();
-                p.sendMessage(ChatColor.YELLOW + "X: " + p_loc.getBlockX() + "\nY: " + p_loc.getBlockY()
-                        + "\nZ: " + p_loc.getBlockZ());
+            String msg = e.getMessage();
+            p.sendMessage(ChatColor.BLUE + "Online Players:");
+            for (Player p2 : plugin.getServer().getOnlinePlayers()) {
+                p.sendMessage(ChatColor.GOLD + p2.getName());
             }
-        }
+                for (Player p2 : plugin.getServer().getOnlinePlayers()) {
+                    if (msg.equalsIgnoreCase(p2.getName())) {
+                        Location p_loc = p2.getLocation();
+                        p.sendMessage(ChatColor.YELLOW +
+                                "X: " + p_loc.getBlockX() +
+                                "\nY: " + p_loc.getBlockY() +
+                                "\nZ: " + p_loc.getBlockZ());
+                    }
+                }
         }
         active = false;
     }
 }
+

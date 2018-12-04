@@ -11,9 +11,11 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static me.keyla.plugin.devathlonplugin.magicalItems.customItems.memoryBottle;
@@ -21,11 +23,23 @@ import static me.keyla.plugin.devathlonplugin.magicalItems.customItems.memoryBot
 public class memories implements Listener {
     Plugin plugin = DevAthlonPlugin.getPlugin(DevAthlonPlugin.class);
     private int amount = 1;
-    private ItemStack item = new ItemStack(Material.LAVA_BUCKET,1);
+    private ItemStack item = new ItemStack(Material.WATER_BUCKET,1);
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent e) {
         Block clickedBlock = e.getClickedBlock();
+
+        ItemMeta pensieves = item.getItemMeta();
+        pensieves.setDisplayName(ChatColor.AQUA + "Pensieve");
+        ArrayList<String> lore = new ArrayList<String>();
+        lore.add(ChatColor.WHITE + "Use command /magicItems pensieve to get a pensieve");
+        pensieves.setLore(lore);
+        item.setItemMeta(pensieves);
+        ShapedRecipe pensieveR = new ShapedRecipe(item);
+        pensieveR.shape(" $ ", "$%$", " $ ");
+        pensieveR.setIngredient('$', Material.COBBLESTONE);
+        pensieveR.setIngredient('%', Material.FEATHER);
+        plugin.getServer().addRecipe(pensieveR);
 
         if (clickedBlock != null) {
             if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
