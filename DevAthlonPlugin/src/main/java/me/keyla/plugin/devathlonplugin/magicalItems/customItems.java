@@ -1,6 +1,5 @@
 package me.keyla.plugin.devathlonplugin.magicalItems;
 
-
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 

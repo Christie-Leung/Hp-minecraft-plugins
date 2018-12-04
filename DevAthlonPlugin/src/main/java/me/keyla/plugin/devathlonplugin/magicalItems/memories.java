@@ -25,6 +25,7 @@ public class memories implements Listener {
     private int amount = 1;
     private ItemStack item = new ItemStack(Material.WATER_BUCKET,1);
 
+
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent e) {
         Block clickedBlock = e.getClickedBlock();
@@ -55,13 +56,17 @@ public class memories implements Listener {
                         if (materialInHand == null || materialInHand == Material.BUCKET) {
                             p.sendMessage("Not Working");
 
-                        } else if (p.getInventory().getItemInMainHand().isSimilar(memoryBottle) && p.getInventory().getItemInMainHand().isSimilar(item)) {
-                            p.sendMessage("Working, you got memory");
-                            p.getInventory().remove(memoryBottle);
-                            p.getInventory().remove(item);
+                        } else if (p.getInventory().contains(memoryBottle)) {
+                            if (p.getInventory().contains(item)) {
+                                p.sendMessage("Working, you got memory");
+                                p.getInventory().remove(memoryBottle);
+                                p.getInventory().remove(item);
+                            } else if (!p.getInventory().contains(item)) {
+                                p.sendMessage(ChatColor.DARK_RED + "Make sure you have the pensieve!");
+                            }
 
-                        } else if (!p.getInventory().getItem(amount).isSimilar(memoryBottle) && p.getInventory().getItemInMainHand().isSimilar(item)) {
-                            p.sendMessage(ChatColor.RED + "You don't have the memory bottle or pensieve");
+                        } else if (!p.getInventory().contains(memoryBottle)) {
+                            p.sendMessage(ChatColor.DARK_RED + "Make sure you have the bottle of memories!");
                         }
                     }
                 }
@@ -71,7 +76,7 @@ public class memories implements Listener {
     ItemMeta mb = customItems.memoryBottle.getItemMeta();
     {
         mb.setDisplayName(ChatColor.BOLD + "" + ChatColor.LIGHT_PURPLE + "Bottle of Memories");
-        mb.setLore(Arrays.asList(ChatColor.DARK_BLUE + "I wonder whats inside this"));
+        mb.setLore(Arrays.asList(ChatColor.BLUE + "I wonder whats inside this"));
         memoryBottle.setItemMeta(mb);
     }
 

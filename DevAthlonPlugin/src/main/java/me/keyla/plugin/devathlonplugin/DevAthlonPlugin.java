@@ -17,11 +17,12 @@ public final class DevAthlonPlugin extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new WeasleyClock(), this);
         loadConfig();
 
+
+
         pensieveRecipe pR = new pensieveRecipe();
         pR.Pensieve();
 
         this.getCommand("magicItems").setExecutor(new magicItems());
-
 
     }
 

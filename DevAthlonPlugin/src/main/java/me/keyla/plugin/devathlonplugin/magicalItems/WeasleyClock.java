@@ -17,7 +17,7 @@ import static me.keyla.plugin.devathlonplugin.magicalItems.customItems.weasleyCl
 public class WeasleyClock implements Listener {
 
     private Plugin plugin = DevAthlonPlugin.getPlugin(DevAthlonPlugin.class);
-    private Boolean active = false;
+    private String instructionMsg = "";
 
     @EventHandler
     public void clockRightClick(PlayerInteractEvent e) {
@@ -25,36 +25,34 @@ public class WeasleyClock implements Listener {
         Player p = e.getPlayer();
         Block clickedBlock = e.getClickedBlock();
         if (clickedBlock != null) {
-                if (e.getHand().equals(EquipmentSlot.HAND)) {
-                    if (p.getItemInHand().isSimilar(weasleyClock)) {
-                        p.sendMessage(ChatColor.DARK_AQUA + "Who's location would you like to know?");
-                        active = true;
-                    }
+            if (e.getHand().equals(EquipmentSlot.HAND)) {
+                if (p.getItemInHand().isSimilar(weasleyClock)) {
+                    instructionMsg = (ChatColor.DARK_AQUA + "Who's location would you like to know?");
+                    p.sendMessage(instructionMsg);
+
                 }
             }
+        }
     }
 
     @EventHandler
     public void getDesginatedPlayer(AsyncPlayerChatEvent e) {
         Player p = e.getPlayer();
+        String msg = e.getMessage();
 
-        if (active = true) {
-            String msg = e.getMessage();
-            p.sendMessage(ChatColor.BLUE + "Online Players:");
+        if (!instructionMsg.isEmpty()) {
             for (Player p2 : plugin.getServer().getOnlinePlayers()) {
-                p.sendMessage(ChatColor.GOLD + p2.getName());
-            }
-                for (Player p2 : plugin.getServer().getOnlinePlayers()) {
-                    if (msg.equalsIgnoreCase(p2.getName())) {
-                        Location p_loc = p2.getLocation();
-                        p.sendMessage(ChatColor.YELLOW +
-                                "X: " + p_loc.getBlockX() +
-                                "\nY: " + p_loc.getBlockY() +
-                                "\nZ: " + p_loc.getBlockZ());
-                    }
+                if (msg.equalsIgnoreCase(p2.getName())) {
+                    Location p_loc = p2.getLocation();
+                    p.sendMessage(ChatColor.GOLD + "Location of " + p2.getName() + ChatColor.YELLOW +
+                            "\nX: " + p_loc.getBlockX() +
+                            "\nY: " + p_loc.getBlockY() +
+                            "\nZ: " + p_loc.getBlockZ());
+                    instructionMsg = "";
                 }
+            }
+
         }
-        active = false;
     }
 }
 
