@@ -1,24 +1,27 @@
 package me.keyla.plugin.devathlonplugin;
 
+import me.keyla.plugin.devathlonplugin.Events.eventListener;
+import me.keyla.plugin.devathlonplugin.magicalItems.WeasleyClock;
+import me.keyla.plugin.devathlonplugin.magicalItems.memories;
 import org.bukkit.ChatColor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import me.keyla.plugin.devathlonplugin.magicalItems.pensieveRecipe;
 
 public final class DevAthlonPlugin extends JavaPlugin implements Listener {
 
     public void onEnable() {
-
-        removeRecipe recipes = new removeRecipe();
-        recipes.removeDefaultRecipes();
-
         getServer().getConsoleSender().sendMessage(ChatColor.BLUE + "\nWorking\n");
         getServer().getPluginManager().registerEvents(new eventListener(), this);
+        getServer().getPluginManager().registerEvents(new memories(), this);
+        getServer().getPluginManager().registerEvents(new WeasleyClock(), this);
         loadConfig();
 
+        pensieveRecipe pR = new pensieveRecipe();
+        pR.Pensieve();
 
-        customItems items = new customItems();
-        items.Pensieve();
-      //  items.testBottle();
+        this.getCommand("magicItems").setExecutor(new magicItems());
+
 
     }
 

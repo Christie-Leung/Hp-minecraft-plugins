@@ -1,5 +1,9 @@
 name: DevAthlonPlugin
-version: ${project.version}
+version: 1.0
 main: me.keyla.plugin.devathlonplugin.DevAthlonPlugin
 authors: [Christie]
 commands:
+  magicItems:
+    usage: /magicItems
+    description: You can get a pensieve and a weasley clock!
+
