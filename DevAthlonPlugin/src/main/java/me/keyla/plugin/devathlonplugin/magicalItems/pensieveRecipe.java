@@ -13,13 +13,13 @@ import java.util.ArrayList;
 public class pensieveRecipe {
 
     private Plugin plugin = DevAthlonPlugin.getPlugin(DevAthlonPlugin.class);
-    private ItemStack item = new ItemStack(Material.WATER_BUCKET,1);
+    private ItemStack item = new ItemStack(Material.SPLASH_POTION,1);
     public void Pensieve() {
 
         ItemMeta pensieves = item.getItemMeta();
         pensieves.setDisplayName(ChatColor.AQUA + "Pensieve");
         ArrayList<String> lore = new ArrayList<String>();
-        lore.add(ChatColor.WHITE + "Use command /magicItems pensieve to get a pensieve");
+        lore.add(ChatColor.WHITE + "Use this with the Bottle of Memories in a cauldron");
         pensieves.setLore(lore);
         item.setItemMeta(pensieves);
         ShapedRecipe pensieveR = new ShapedRecipe(item);

@@ -22,8 +22,7 @@ import static me.keyla.plugin.devathlonplugin.magicalItems.customItems.memoryBot
 
 public class memories implements Listener {
     Plugin plugin = DevAthlonPlugin.getPlugin(DevAthlonPlugin.class);
-    private int amount = 1;
-    private ItemStack item = new ItemStack(Material.WATER_BUCKET,1);
+    private ItemStack item = new ItemStack(Material.SPLASH_POTION,1);
 
 
     @EventHandler
@@ -33,7 +32,7 @@ public class memories implements Listener {
         ItemMeta pensieves = item.getItemMeta();
         pensieves.setDisplayName(ChatColor.AQUA + "Pensieve");
         ArrayList<String> lore = new ArrayList<String>();
-        lore.add(ChatColor.WHITE + "Use command /magicItems pensieve to get a pensieve");
+        lore.add(ChatColor.WHITE + "Use this with the Bottle of Memories in a cauldron");
         pensieves.setLore(lore);
         item.setItemMeta(pensieves);
         ShapedRecipe pensieveR = new ShapedRecipe(item);
@@ -50,23 +49,22 @@ public class memories implements Listener {
                     // Interacting with a Cauldron
                     if (type == Material.CAULDRON) {
                         Material materialInHand = e.getMaterial();
-                        ItemStack i = e.getItem();
-                        p.sendMessage("Detected cauldron right click");
 
                         if (materialInHand == null || materialInHand == Material.BUCKET) {
                             p.sendMessage("Not Working");
 
-                        } else if (p.getInventory().contains(memoryBottle)) {
+                        } else if (p.getInventory().getItemInHand().isSimilar(memoryBottle)) {
                             if (p.getInventory().contains(item)) {
                                 p.sendMessage("Working, you got memory");
-                                p.getInventory().remove(memoryBottle);
+                                ItemStack hand = p.getInventory().getItemInHand();
+                                hand.setAmount(hand.getAmount() - 1);
                                 p.getInventory().remove(item);
                             } else if (!p.getInventory().contains(item)) {
                                 p.sendMessage(ChatColor.DARK_RED + "Make sure you have the pensieve!");
                             }
 
                         } else if (!p.getInventory().contains(memoryBottle)) {
-                            p.sendMessage(ChatColor.DARK_RED + "Make sure you have the bottle of memories!");
+                            p.sendMessage(ChatColor.DARK_RED + "Make sure you have the bottle of memories in your hand!");
                         }
                     }
                 }
@@ -83,6 +81,8 @@ public class memories implements Listener {
     @EventHandler
     public void playerMemories() {
 
+        //Supposed to store what person said in chat 1 min before player has right clicked them
+        //then when right clicked against cauldron, it'll show all the messages the person has said at whatever time and date
 
     }
 
